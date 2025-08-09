@@ -916,12 +916,15 @@
 function getBeneficiaries() {
   const beneficiaries = [];
 
+  // Testator (self)
   const fullName = document.getElementById('fullName')?.value?.trim();
   if (fullName) beneficiaries.push({ name: fullName, type: 'self' });
 
+  // Spouse
   const spouseName = document.getElementById('spouseName')?.value?.trim();
   if (spouseName) beneficiaries.push({ name: spouseName, type: 'spouse' });
 
+  // Parents
   const parent1Name = document.getElementById('parent1Name')?.value?.trim();
   if (parent1Name) beneficiaries.push({ name: parent1Name, type: 'parent1' });
 
@@ -934,6 +937,7 @@ function getBeneficiaries() {
   const parent2MarriedName = document.getElementById('parent2MarriedName')?.value?.trim();
   if (parent2MarriedName) beneficiaries.push({ name: parent2MarriedName, type: 'parent2Married' });
 
+  // Dynamic people
   for (let i = 1; i <= 200; i++) {
     const s = document.getElementById(`sibling${i}Name`)?.value?.trim();
     if (s) beneficiaries.push({ name: s, type: `sibling${i}` });
@@ -941,13 +945,13 @@ function getBeneficiaries() {
     const sm = document.getElementById(`siblingMarried${i}Name`)?.value?.trim();
     if (sm) beneficiaries.push({ name: sm, type: `siblingMarried${i}` });
 
-    const c1 = document.getElementById(`singleChild${i}`)?.value?.trim();
+    const c1 = document.getElementById(`singleChild${i}Name`)?.value?.trim();
     if (c1) beneficiaries.push({ name: c1, type: `singleChild${i}` });
 
-    const c2 = document.getElementById(`marriedChild${i}`)?.value?.trim();
+    const c2 = document.getElementById(`marriedChild${i}Name`)?.value?.trim();
     if (c2) beneficiaries.push({ name: c2, type: `marriedChild${i}` });
 
-    const c3 = document.getElementById(`previousChild${i}`)?.value?.trim();
+    const c3 = document.getElementById(`previousChild${i}Name`)?.value?.trim();
     if (c3) beneficiaries.push({ name: c3, type: `previousChild${i}` });
 
     const ab = document.getElementById(`additionalBeneficiary${i}Name`)?.value?.trim();
@@ -963,6 +967,7 @@ function getBeneficiaries() {
     if (rb) beneficiaries.push({ name: rb, type: `residuaryBeneficiary${i}` });
   }
 
+  // Personal Representatives
   const pr = document.getElementById('personalRepresentativeName')?.value?.trim();
   if (pr) beneficiaries.push({ name: pr, type: 'personalRepresentativeOther' });
 
@@ -971,6 +976,7 @@ function getBeneficiaries() {
 
   return beneficiaries;
 }
+
 
 // Render the summary list
 function renderBeneficiarySummary(beneficiaries) {
@@ -1396,6 +1402,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
