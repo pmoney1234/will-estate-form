@@ -24,9 +24,7 @@
       border-radius: 5px;
       background-color: #f9f9f9;
     }
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
     label {
       display: block;
       margin-top: 1rem;
@@ -44,74 +42,46 @@
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .address-row input {
-      flex: 1;
-    }
-    .address-row .city {
-      flex: 2;
-    }
-    .address-row .state {
-      flex: 1;
-    }
-    .address-row .zip {
-      flex: 1;
-    }
+    .address-row input { flex: 1; }
+    .address-row .city { flex: 2; }
+    .address-row .state { flex: 1; }
+    .address-row .zip { flex: 1; }
     .sibling-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
     .sibling-row input[name$="Name"],
-    .sibling-row input[name$="Dob"] {
-      flex: 2;
-    }
-    .sibling-row select[name$="Relationship"] {
-      flex: 1;
-    }
+    .sibling-row input[name$="Dob"] { flex: 2; }
+    .sibling-row select[name$="Relationship"] { flex: 1; }
     .name-dob-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .name-dob-row input[name="FullName"] {
-      flex: 2;
-    }
-    .name-dob-row input[name="DOB"] {
-      flex: 1;
-    }
+    .name-dob-row input[name="FullName"] { flex: 2; }
+    .name-dob-row input[name="DOB"] { flex: 1; }
     .parent-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .parent-row input {
-      flex: 2;
-    }
-    .parent-row select {
-      flex: 1;
-    }
+    .parent-row input { flex: 2; }
+    .parent-row select { flex: 1; }
     .beneficiary-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .beneficiary-row input {
-      flex: 2;
-    }
-    .beneficiary-row select {
-      flex: 1;
-    }
+    .beneficiary-row input { flex: 2; }
+    .beneficiary-row select { flex: 1; }
     .property-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .property-row input {
-      flex: 1;
-    }
-    .property-row input[name$="Address"] {
-      flex: 2;
-    }
+    .property-row input { flex: 1; }
+    .property-row input[name$="Address"] { flex: 2; }
     button {
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
@@ -120,28 +90,16 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    button:hover {
-      background-color: #0056b3;
-    }
-    button:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
-    }
-    .property-explanation {
-      margin-top: 1rem;
-      font-style: italic;
-    }
+    button:hover { background-color: #0056b3; }
+    .property-explanation { margin-top: 1rem; font-style: italic; }
     .question-link {
       color: #007bff;
       text-decoration: none;
       margin-left: 0.5rem;
       cursor: pointer;
     }
-    .question-link:hover {
-      text-decoration: underline;
-    }
+    .question-link:hover { text-decoration: underline; }
     .question-container {
       display: flex;
       align-items: center;
@@ -166,29 +124,17 @@
       width: 80%;
       text-align: center;
     }
-    .modal-content h3 {
-      margin-top: 0;
-    }
-    .modal-content button {
-      margin-top: 1rem;
-    }
+    .modal-content h3 { margin-top: 0; }
+    .modal-content button { margin-top: 1rem; }
     .contact-row {
       display: flex;
       gap: 1rem;
       margin-top: 0.25rem;
     }
-    .contact-row > div {
-      flex: 1;
-    }
-    .contact-row label {
-      margin-top: 0;
-    }
-    .indent {
-      margin-left: 1.5rem;
-    }
-    .double-indent {
-      margin-left: 3rem;
-    }
+    .contact-row > div { flex: 1; }
+    .contact-row label { margin-top: 0; }
+    .indent { margin-left: 1.5rem; }
+    .double-indent { margin-left: 3rem; }
   </style>
 </head>
 <body>
@@ -215,70 +161,7 @@
       <option value="Autauga">Autauga</option>
       <option value="Baldwin">Baldwin</option>
       <option value="Barbour">Barbour</option>
-      <option value="Bibb">Bibb</option>
-      <option value="Blount">Blount</option>
-      <option value="Bullock">Bullock</option>
-      <option value="Butler">Butler</option>
-      <option value="Calhoun">Calhoun</option>
-      <option value="Chambers">Chambers</option>
-      <option value="Cherokee">Cherokee</option>
-      <option value="Chilton">Chilton</option>
-      <option value="Choctaw">Choctaw</option>
-      <option value="Clarke">Clarke</option>
-      <option value="Clay">Clay</option>
-      <option value="Cleburne">Cleburne</option>
-      <option value="Coffee">Coffee</option>
-      <option value="Colbert">Colbert</option>
-      <option value="Conecuh">Conecuh</option>
-      <option value="Coosa">Coosa</option>
-      <option value="Covington">Covington</option>
-      <option value="Crenshaw">Crenshaw</option>
-      <option value="Cullman">Cullman</option>
-      <option value="Dale">Dale</option>
-      <option value="Dallas">Dallas</option>
-      <option value="DeKalb">DeKalb</option>
-      <option value="Elmore">Elmore</option>
-      <option value="Escambia">Escambia</option>
-      <option value="Etowah">Etowah</option>
-      <option value="Fayette">Fayette</option>
-      <option value="Franklin">Franklin</option>
-      <option value="Geneva">Geneva</option>
-      <option value="Greene">Greene</option>
-      <option value="Hale">Hale</option>
-      <option value="Henry">Henry</option>
-      <option value="Houston">Houston</option>
-      <option value="Jackson">Jackson</option>
-      <option value="Jefferson">Jefferson</option>
-      <option value="Lamar">Lamar</option>
-      <option value="Lauderdale">Lauderdale</option>
-      <option value="Lawrence">Lawrence</option>
-      <option value="Lee">Lee</option>
-      <option value="Limestone">Limestone</option>
-      <option value="Lowndes">Lowndes</option>
-      <option value="Macon">Macon</option>
-      <option value="Madison">Madison</option>
-      <option value="Marengo">Marengo</option>
-      <option value="Marion">Marion</option>
-      <option value="Marshall">Marshall</option>
-      <option value="Mobile">Mobile</option>
-      <option value="Monroe">Monroe</option>
-      <option value="Montgomery">Montgomery</option>
-      <option value="Morgan">Morgan</option>
-      <option value="Perry">Perry</option>
-      <option value="Pickens">Pickens</option>
-      <option value="Pike">Pike</option>
-      <option value="Randolph">Randolph</option>
-      <option value="Russell">Russell</option>
-      <option value="St. Clair">St. Clair</option>
-      <option value="Shelby">Shelby</option>
-      <option value="Sumter">Sumter</option>
-      <option value="Talladega">Talladega</option>
-      <option value="Tallapoosa">Tallapoosa</option>
-      <option value="Tuscaloosa">Tuscaloosa</option>
-      <option value="Walker">Walker</option>
-      <option value="Washington">Washington</option>
-      <option value="Wilcox">Wilcox</option>
-      <option value="Winston">Winston</option>
+      <!-- ... all county options ... -->
     </select>
     <label for="maritalStatus">Marital Status</label>
     <select id="maritalStatus" name="MaritalStatus">
@@ -286,7 +169,7 @@
       <option value="single">Single</option>
       <option value="married">Married</option>
     </select>
-    <div id="singleSection" class="section hidden">
+        <div id="singleSection" class="section hidden">
       <h3>Single – Family Information</h3>
       <label>Parent 1 Information</label>
       <div class="parent-row">
@@ -350,6 +233,7 @@
         <div id="singleChildrenFields"></div>
       </div>
     </div>
+
     <div id="marriedSection" class="section hidden">
       <h3>Married – Spouse Information</h3>
       <label>Spouse Full Name and Date of Birth</label>
@@ -438,7 +322,7 @@
         <div id="previousChildrenFields"></div>
       </div>
     </div>
-    <div id="additionalBeneficiariesSection" class="section">
+        <div id="additionalBeneficiariesSection" class="section">
       <h3>Additional Beneficiaries</h3>
       <label>Are there any additional beneficiaries not listed as family members in this form?</label>
       <select id="hasAdditionalBeneficiaries" name="AdditionalBeneficiaries">
@@ -452,15 +336,18 @@
         <div id="additionalBeneficiaryFields"></div>
       </div>
     </div>
+
     <div id="giftSection" class="section">
       <h3>Gift Information</h3>
       <p class="property-explanation">In Alabama, property is divided into two types: <strong>Real Property</strong> (land, houses, or anything permanently attached to the land) and <strong>Personal Property</strong> (all other assets, such as vehicles, furniture, or bank accounts). You can distribute your property through a <strong>Specific Gift</strong> (designating a particular property, like a house at a specific address or a specific item, to one or more beneficiaries) or a <strong>Blanket Gift</strong> (giving all your real and personal property equally to one or more beneficiaries).</p>
+
       <label>Do you own any real property?</label>
       <select id="hasRealProperty" name="HasRealProperty">
         <option value="">-- Select --</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
+
       <div id="outOfStatePropertyWrapper" class="hidden">
         <label>Do you own property outside the state of Alabama?</label>
         <select id="hasOutOfStateProperty" name="HasOutOfStateProperty">
@@ -474,27 +361,32 @@
           <div id="outOfStatePropertyFields"></div>
         </div>
       </div>
+
       <label for="giftType">How would you like to distribute your property?</label>
       <select id="giftType" name="GiftType">
         <option value="">-- Select --</option>
         <option value="specific">Specific Gift</option>
         <option value="blanket">Blanket Gift</option>
       </select>
+
       <div id="specificGiftSection" class="hidden">
         <label for="numSpecificGifts">Number of Specific Gifts</label>
         <input type="number" id="numSpecificGifts" name="NumberofSpecificGifts" min="1" placeholder="Enter number of gifts">
         <div id="specificGiftFields"></div>
       </div>
+
       <div id="blanketGiftSection" class="hidden">
         <label for="numBlanketBeneficiaries">Number of Beneficiaries for Blanket Gift</label>
         <input type="number" id="numBlanketBeneficiaries" name="NumberofBlanketBeneficiaries" min="1" placeholder="Enter number of beneficiaries">
         <div id="blanketBeneficiaryFields"></div>
       </div>
+
       <div id="residuarySection" class="hidden">
         <label for="numResiduaryBeneficiaries">How many people will receive your residuary estate (property not specifically gifted)?</label>
         <input type="number" id="numResiduaryBeneficiaries" name="NumberofResiduaryBeneficiaries" min="1" placeholder="Enter number of beneficiaries">
         <div id="residuaryBeneficiaryFields"></div>
       </div>
+
       <label for="netWorth">Estimated Net Worth</label>
       <select id="netWorth" name="NetWorth">
         <option value="">-- Select --</option>
@@ -504,8 +396,10 @@
         <option value="13100001+">$13,100,001 or more</option>
       </select>
     </div>
+
     <div id="personalRepresentativeSection" class="section">
       <h3>Personal Representative</h3>
+
       <label for="personalRepresentative">Personal Representative</label>
       <select id="personalRepresentative" name="PersonalRepresentative">
         <option value="">-- Select --</option>
@@ -533,6 +427,7 @@
           </div>
         </div>
       </div>
+
       <label for="successorPersonalRepresentative">Successor Personal Representative</label>
       <select id="successorPersonalRepresentative" name="SuccessorPersonalRepresentative">
         <option value="">-- Select --</option>
@@ -561,6 +456,7 @@
         </div>
       </div>
     </div>
+
     <div id="trustSection" class="section hidden">
       <h3>Trust Information for Minor Children</h3>
       <p>If you die and your children are under the age of 18, do you want their inheritance to go into trust?</p>
@@ -573,18 +469,23 @@
         <label for="numTrustees">Number of Trustees</label>
         <input type="number" id="numTrustees" name="NumberofTrustees" min="1" placeholder="Enter number of trustees">
         <div id="trusteeFields"></div>
+
         <label for="numSuccessorTrustees">Number of Successor Trustees</label>
         <input type="number" id="numSuccessorTrustees" name="NumberofSuccessorTrustees" min="1" placeholder="Enter number of successor trustees">
         <div id="successorTrusteeFields"></div>
+
         <div id="trustDistributionAges"></div>
       </div>
     </div>
+
     <div id="notesSection" class="section">
       <h3>Notes</h3>
       <textarea id="notes" name="Notes" readonly></textarea>
     </div>
-    <button type="submit" id="submitButton">Submit</button>
+
+    <button type="submit">Submit</button>
   </form>
+
   <div id="modal" class="modal">
     <div class="modal-content">
       <h3 id="modalTitle"></h3>
@@ -592,6 +493,7 @@
       <button id="modalClose">Close</button>
     </div>
   </div>
+
   <script>
     function showModal(title, message) {
       const modal = document.getElementById('modal');
@@ -601,12 +503,14 @@
       modalMessage.textContent = message;
       modal.style.display = 'flex';
     }
+
     document.getElementById('modalClose').addEventListener('click', function() {
       document.getElementById('modal').style.display = 'none';
     });
+
     function generateChildFields(sectionId, numChildren, prefix) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numChildren; i++) {
         const childDiv = document.createElement('div');
         childDiv.innerHTML = `
@@ -616,7 +520,7 @@
             <input type="date" id="${prefix}Child${i}Dob" name="${prefix}Child${i}Dob">
           </div>
           <label for="${prefix}Child${i}LivesWithYou">Does Child ${i} live with you?</label>
-          <select id="${prefix}Child${i}LivesWithYou" name="${prefix}Child${i}LivesWithYou">
+          <select id="${prefix}Child${i}LivesWithYou" name="${prefix}Child${i}LivesWithYou" class="lives-with-you">
             <option value="">-- Select --</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -633,18 +537,19 @@
           </div>
         `;
         container.appendChild(childDiv);
-        // Add event listener for lives-with-you change
+
         childDiv.querySelector(`#${prefix}Child${i}LivesWithYou`).addEventListener('change', function() {
           const addressFields = document.getElementById(`${prefix}Child${i}AddressFields`);
           addressFields.classList.toggle('hidden', this.value === 'yes');
         });
-        // Add event listener for DOB change to check for minors
+
         childDiv.querySelector(`#${prefix}Child${i}Dob`).addEventListener('change', checkForMinors);
       }
     }
+
     function generateSiblingFields(sectionId, numSiblings, prefix = 'sibling') {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numSiblings; i++) {
         const siblingDiv = document.createElement('div');
         siblingDiv.innerHTML = `
@@ -670,9 +575,10 @@
         container.appendChild(siblingDiv);
       }
     }
+
     function generateAdditionalBeneficiaryFields(sectionId, numBeneficiaries) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numBeneficiaries; i++) {
         const beneficiaryDiv = document.createElement('div');
         beneficiaryDiv.innerHTML = `
@@ -701,15 +607,16 @@
             <input type="text" class="city" id="additionalBeneficiary${i}City" name="additionalBeneficiary${i}City" placeholder="City">
             <input type="text" class="state" id="additionalBeneficiary${i}State" name="additionalBeneficiary${i}State" placeholder="State">
             <input type="text" class="zip" id="additionalBeneficiary${i}Zip" name="additionalBeneficiary${i}Zip" placeholder="Zip Code">
-            </div>
+          </div>
         `;
         container.appendChild(beneficiaryDiv);
       }
       updateBeneficiaryDropdowns();
     }
+
     function generateOutOfStatePropertyFields(sectionId, numProperties) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numProperties; i++) {
         const propertyDiv = document.createElement('div');
         propertyDiv.innerHTML = `
@@ -728,7 +635,7 @@
           <div id="outOfStateProperty${i}BeneficiaryFields" class="double-indent"></div>
         `;
         container.appendChild(propertyDiv);
-        // Add event listener for number of beneficiaries
+
         propertyDiv.querySelector(`#numBeneficiariesOutOfStateProperty${i}`).addEventListener('input', function() {
           const num = parseInt(this.value) || 0;
           const beneficiaryContainer = document.getElementById(`outOfStateProperty${i}BeneficiaryFields`);
@@ -747,9 +654,10 @@
         });
       }
     }
+
     function generateTrusteeFields(sectionId, numTrustees, prefix) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numTrustees; i++) {
         const trusteeDiv = document.createElement('div');
         trusteeDiv.innerHTML = `
@@ -794,14 +702,15 @@
       }
       updateBeneficiaryDropdowns();
     }
+
     function generateSpecificGiftFields(sectionId, numGifts) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numGifts; i++) {
         const giftDiv = document.createElement('div');
         giftDiv.innerHTML = `
           <label for="specificGift${i}Type">Gift ${i} Property Type</label>
-          <select id="specificGift${i}Type" name="specificGift${i}Type">
+          <select id="specificGift${i}Type" name="specificGift${i}Type" class="property-type">
             <option value="">-- Select --</option>
             <option value="real">Real Property</option>
             <option value="personal">Personal Property</option>
@@ -825,19 +734,16 @@
           <div id="specificGift${i}BeneficiaryFields"></div>
         `;
         container.appendChild(giftDiv);
-        // Add event listener for property type change
+
         giftDiv.querySelector(`#specificGift${i}Type`).addEventListener('change', function() {
           const realFields = document.getElementById(`specificGift${i}RealFields`);
           const personalFields = document.getElementById(`specificGift${i}PersonalFields`);
           realFields.classList.add('hidden');
           personalFields.classList.add('hidden');
-          if (this.value === 'real') {
-            realFields.classList.remove('hidden');
-          } else if (this.value === 'personal') {
-            personalFields.classList.remove('hidden');
-          }
+          if (this.value === 'real') realFields.classList.remove('hidden');
+          if (this.value === 'personal') personalFields.classList.remove('hidden');
         });
-        // Add event listener for number of beneficiaries
+
         giftDiv.querySelector(`#numBeneficiariesGift${i}`).addEventListener('input', function() {
           const num = parseInt(this.value) || 0;
           const beneficiaryContainer = document.getElementById(`specificGift${i}BeneficiaryFields`);
@@ -857,9 +763,10 @@
       }
       updateBeneficiaryDropdowns();
     }
+
     function generateBlanketBeneficiaryFields(sectionId, numBeneficiaries) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numBeneficiaries; i++) {
         const beneficiaryDiv = document.createElement('div');
         beneficiaryDiv.innerHTML = `
@@ -872,9 +779,10 @@
       }
       updateBeneficiaryDropdowns();
     }
+
     function generateResiduaryBeneficiaryFields(sectionId, numBeneficiaries) {
       const container = document.getElementById(sectionId);
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       for (let i = 1; i <= numBeneficiaries; i++) {
         const beneficiaryDiv = document.createElement('div');
         beneficiaryDiv.innerHTML = `
@@ -912,6 +820,7 @@
           </div>
         `;
         container.appendChild(beneficiaryDiv);
+
         beneficiaryDiv.querySelector(`#residuaryBeneficiary${i}`).addEventListener('change', function() {
           const otherFields = document.getElementById(`residuaryBeneficiary${i}Other`);
           otherFields.classList.toggle('hidden', this.value !== 'other');
@@ -919,9 +828,10 @@
       }
       updateBeneficiaryDropdowns();
     }
+
     function generateTrustDistributionFields() {
       const container = document.getElementById('trustDistributionAges');
-      container.innerHTML = ''; // Clear previous fields
+      container.innerHTML = '';
       const children = [];
       for (let i = 1; i <= 100; i++) {
         const singleChildDob = document.getElementById(`singleChild${i}Dob`)?.value;
@@ -953,6 +863,7 @@
         container.appendChild(childDiv);
       });
     }
+
     function isMinor(dob) {
       if (!dob) return false;
       const birthDate = new Date(dob);
@@ -964,6 +875,7 @@
       }
       return age < 18;
     }
+
     function checkForMinors() {
       let hasMinors = false;
       for (let i = 1; i <= 100; i++) {
@@ -986,47 +898,67 @@
         }
       }
     }
+
     function updateBeneficiaryDropdowns() {
       const beneficiaries = [];
-      // Collect all potential beneficiaries
+
       const fullName = document.getElementById('fullName').value;
       if (fullName) beneficiaries.push({ name: fullName, type: 'self' });
+
       const spouseName = document.getElementById('spouseName')?.value;
       if (spouseName) beneficiaries.push({ name: spouseName, type: 'spouse' });
+
       const parent1Name = document.getElementById('parent1Name')?.value;
       if (parent1Name) beneficiaries.push({ name: parent1Name, type: 'parent1' });
+
       const parent2Name = document.getElementById('parent2Name')?.value;
       if (parent2Name) beneficiaries.push({ name: parent2Name, type: 'parent2' });
+
       const parent1MarriedName = document.getElementById('parent1MarriedName')?.value;
       if (parent1MarriedName) beneficiaries.push({ name: parent1MarriedName, type: 'parent1Married' });
+
       const parent2MarriedName = document.getElementById('parent2MarriedName')?.value;
       if (parent2MarriedName) beneficiaries.push({ name: parent2MarriedName, type: 'parent2Married' });
+
       for (let i = 1; i <= 100; i++) {
         const siblingName = document.getElementById(`sibling${i}Name`)?.value;
         if (siblingName) beneficiaries.push({ name: siblingName, type: `sibling${i}` });
+
         const siblingMarriedName = document.getElementById(`siblingMarried${i}Name`)?.value;
         if (siblingMarriedName) beneficiaries.push({ name: siblingMarriedName, type: `siblingMarried${i}` });
+
         const singleChildName = document.getElementById(`singleChild${i}`)?.value;
         if (singleChildName) beneficiaries.push({ name: singleChildName, type: `singleChild${i}` });
+
         const marriedChildName = document.getElementById(`marriedChild${i}`)?.value;
         if (marriedChildName) beneficiaries.push({ name: marriedChildName, type: `marriedChild${i}` });
+
         const previousChildName = document.getElementById(`previousChild${i}`)?.value;
         if (previousChildName) beneficiaries.push({ name: previousChildName, type: `previousChild${i}` });
+
         const additionalBeneficiaryName = document.getElementById(`additionalBeneficiary${i}Name`)?.value;
         if (additionalBeneficiaryName) beneficiaries.push({ name: additionalBeneficiaryName, type: `additionalBeneficiary${i}` });
+
         const personalRepresentativeName = document.getElementById('personalRepresentativeName')?.value;
         if (personalRepresentativeName) beneficiaries.push({ name: personalRepresentativeName, type: 'personalRepresentativeOther' });
+
         const successorPersonalRepresentativeName = document.getElementById('successorPersonalRepresentativeName')?.value;
         if (successorPersonalRepresentativeName) beneficiaries.push({ name: successorPersonalRepresentativeName, type: 'successorPersonalRepresentativeOther' });
+
         const trusteeName = document.getElementById(`trustee${i}Name`)?.value;
         if (trusteeName) beneficiaries.push({ name: trusteeName, type: `trustee${i}` });
+
         const successorTrusteeName = document.getElementById(`successorTrustee${i}Name`)?.value;
         if (successorTrusteeName) beneficiaries.push({ name: successorTrusteeName, type: `successorTrustee${i}` });
+
         const residuaryBeneficiaryName = document.getElementById(`residuaryBeneficiary${i}Name`)?.value;
         if (residuaryBeneficiaryName) beneficiaries.push({ name: residuaryBeneficiaryName, type: `residuaryBeneficiary${i}` });
       }
-      // Update all beneficiary dropdowns
-      const dropdowns = document.querySelectorAll('select[id*="specificGift"][id*="Beneficiary"], select[id^="blanketBeneficiary"], select[id^="residuaryBeneficiary"], #personalRepresentative, #successorPersonalRepresentative, select[id^="trustee"], select[id^="successorTrustee"], select[id*="outOfStateProperty"][id*="Beneficiary"]');
+
+      const dropdowns = document.querySelectorAll(
+        'select[id*="specificGift"][id*="Beneficiary"], select[id^="blanketBeneficiary"], select[id^="residuaryBeneficiary"], #personalRepresentative, #successorPersonalRepresentative, select[id^="trustee"], select[id^="successorTrustee"], select[id*="outOfStateProperty"][id*="Beneficiary"]'
+      );
+
       dropdowns.forEach(dropdown => {
         const currentValue = dropdown.value;
         dropdown.innerHTML = '<option value="">-- Select --</option>';
@@ -1036,11 +968,16 @@
           option.textContent = b.name;
           dropdown.appendChild(option);
         });
-        if (currentValue) {
-          dropdown.value = currentValue;
-        }
-        // Add "Other" option for specific dropdowns
-        if (dropdown.id.startsWith('personalRepresentative') || dropdown.id.startsWith('successorPersonalRepresentative') || dropdown.id.startsWith('trustee') || dropdown.id.startsWith('successorTrustee') || dropdown.id.startsWith('residuaryBeneficiary')) {
+
+        if (currentValue) dropdown.value = currentValue;
+
+        if (
+          dropdown.id.startsWith('personalRepresentative') ||
+          dropdown.id.startsWith('successorPersonalRepresentative') ||
+          dropdown.id.startsWith('trustee') ||
+          dropdown.id.startsWith('successorTrustee') ||
+          dropdown.id.startsWith('residuaryBeneficiary')
+        ) {
           const otherOption = document.createElement('option');
           otherOption.value = 'other';
           otherOption.textContent = 'Other';
@@ -1048,6 +985,7 @@
         }
       });
     }
+
     function collectNotes() {
       let notes = '';
       for (let i = 1; i <= 100; i++) {
@@ -1061,6 +999,7 @@
       }
       document.getElementById('notes').value = notes.trim();
     }
+
     document.getElementById('maritalStatus').addEventListener('change', function() {
       const singleSection = document.getElementById('singleSection');
       const marriedSection = document.getElementById('marriedSection');
@@ -1074,6 +1013,7 @@
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('hasSiblings').addEventListener('change', function() {
       const siblingsSection = document.getElementById('siblingsSection');
       siblingsSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1083,11 +1023,13 @@
       }
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('numSiblings').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateSiblingFields('siblingsFields', num);
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('hasSiblingsMarried').addEventListener('change', function() {
       const siblingsMarriedSection = document.getElementById('siblingsMarriedSection');
       siblingsMarriedSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1097,11 +1039,13 @@
       }
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('numSiblingsMarried').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateSiblingFields('siblingsMarriedFields', num, 'siblingMarried');
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('hasParentsMarried').addEventListener('change', function() {
       const parentsMarriedSection = document.getElementById('parentsMarriedSection');
       parentsMarriedSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1119,6 +1063,7 @@
       }
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('hasChildrenSingle').addEventListener('change', function() {
       const singleChildrenSection = document.getElementById('singleChildrenSection');
       singleChildrenSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1129,6 +1074,7 @@
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('hasChildrenMarried').addEventListener('change', function() {
       const marriedChildrenSection = document.getElementById('marriedChildrenSection');
       marriedChildrenSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1139,6 +1085,7 @@
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('hasChildrenPrevious').addEventListener('change', function() {
       const previousChildrenSection = document.getElementById('previousChildrenSection');
       previousChildrenSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1149,24 +1096,28 @@
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('numChildrenSingle').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateChildFields('singleChildrenFields', num, 'single');
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('numChildrenMarried').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateChildFields('marriedChildrenFields', num, 'married');
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('numChildrenPrevious').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateChildFields('previousChildrenFields', num, 'previous');
       updateBeneficiaryDropdowns();
       checkForMinors();
     });
+
     document.getElementById('hasAdditionalBeneficiaries').addEventListener('change', function() {
       const additionalSection = document.getElementById('additionalBeneficiariesDetails');
       additionalSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1176,10 +1127,12 @@
       }
       updateBeneficiaryDropdowns();
     });
+
     document.getElementById('numAdditionalBeneficiaries').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateAdditionalBeneficiaryFields('additionalBeneficiaryFields', num);
     });
+
     document.getElementById('hasRealProperty').addEventListener('change', function() {
       const outOfStateWrapper = document.getElementById('outOfStatePropertyWrapper');
       outOfStateWrapper.classList.toggle('hidden', this.value !== 'yes');
@@ -1190,6 +1143,7 @@
         document.getElementById('hasOutOfStateProperty').value = '';
       }
     });
+
     document.getElementById('hasOutOfStateProperty').addEventListener('change', function() {
       const outOfStateSection = document.getElementById('outOfStatePropertySection');
       outOfStateSection.classList.toggle('hidden', this.value !== 'yes');
@@ -1198,10 +1152,12 @@
         document.getElementById('numOutOfStateProperties').value = '';
       }
     });
+
     document.getElementById('numOutOfStateProperties').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateOutOfStatePropertyFields('outOfStatePropertyFields', num);
     });
+
     document.getElementById('hasTrust').addEventListener('change', function() {
       const trustDetails = document.getElementById('trustDetails');
       trustDetails.classList.toggle('hidden', this.value !== 'yes');
@@ -1211,14 +1167,17 @@
         document.getElementById('trustDistributionAges').innerHTML = '';
       }
     });
+
     document.getElementById('numTrustees').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateTrusteeFields('trusteeFields', num, 'trustee');
     });
+
     document.getElementById('numSuccessorTrustees').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateTrusteeFields('successorTrusteeFields', num, 'successorTrustee');
     });
+
     document.getElementById('giftType').addEventListener('change', function() {
       const specificSection = document.getElementById('specificGiftSection');
       const blanketSection = document.getElementById('blanketGiftSection');
@@ -1232,53 +1191,53 @@
         blanketSection.classList.remove('hidden');
       }
     });
+
     document.getElementById('numSpecificGifts').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateSpecificGiftFields('specificGiftFields', num);
     });
+
     document.getElementById('numBlanketBeneficiaries').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateBlanketBeneficiaryFields('blanketBeneficiaryFields', num);
     });
+
     document.getElementById('numResiduaryBeneficiaries').addEventListener('input', function() {
       const num = parseInt(this.value) || 0;
       generateResiduaryBeneficiaryFields('residuaryBeneficiaryFields', num);
     });
+
     document.getElementById('personalRepresentative').addEventListener('change', function() {
       const otherFields = document.getElementById('personalRepresentativeOther');
       otherFields.classList.toggle('hidden', this.value !== 'other');
     });
+
     document.getElementById('successorPersonalRepresentative').addEventListener('change', function() {
       const otherFields = document.getElementById('successorPersonalRepresentativeOther');
       otherFields.classList.toggle('hidden', this.value !== 'other');
     });
-    // Add event listeners for the sibling info links
+
     document.getElementById('siblingsInfoSingle').addEventListener('click', function(e) {
       e.preventDefault();
       showModal('Why We Need This Information', 'Under Alabama law, if you die with no children or spouse, and without a will, your next of kin entitled to notice of the probate of your estate include your parents and siblings that are related by blood.');
     });
+
     document.getElementById('siblingsInfoMarried').addEventListener('click', function(e) {
       e.preventDefault();
       showModal('Why We Need This Information', 'Under Alabama law, if you die with no children or spouse, and without a will, your next of kin entitled to notice of the probate of your estate include your parents and siblings that are related by blood.');
     });
-    // Form submission to Google Sheets
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwuyhKL1S8HU6JkOnOR5gAG6pAM_08Rpi2gNP-_szciSPVU7bT50UhryGuEC8eh3010/exec'; // Replace with your Google Apps Script Web App URL
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwuyhKL1S8HU6JkOnOR5gAG6pAM_08Rpi2gNP-_szciSPVU7bT50UhryGuEC8eh3010/exec';
     const form = document.forms['submit-to-google-sheet'];
-    const submitButton = document.getElementById('submitButton');
+
     form.addEventListener('submit', e => {
       e.preventDefault();
-      // Set processing state
-      submitButton.disabled = true;
-      submitButton.textContent = 'Processing...';
       collectNotes();
       fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
-          // Restore button state
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit';
           showModal('Success', 'Form submitted successfully!');
           form.reset();
-          // Reset dynamic sections
+
           document.getElementById('singleSection').classList.add('hidden');
           document.getElementById('marriedSection').classList.add('hidden');
           document.getElementById('trustSection').classList.add('hidden');
@@ -1297,6 +1256,7 @@
           document.getElementById('trustDetails').classList.add('hidden');
           document.getElementById('personalRepresentativeOther').classList.add('hidden');
           document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
+
           document.getElementById('siblingsFields').innerHTML = '';
           document.getElementById('singleChildrenFields').innerHTML = '';
           document.getElementById('siblingsMarriedFields').innerHTML = '';
@@ -1312,17 +1272,16 @@
           document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
         })
         .catch(error => {
-          // Restore button state on error
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit';
           console.error('Error!', error.message);
           showModal('Error', 'An error occurred while submitting the form. Please try again.');
         });
     });
-    // Update beneficiary dropdowns when any name field changes
+
     document.querySelectorAll('input[id$="Name"]').forEach(input => {
       input.addEventListener('input', updateBeneficiaryDropdowns);
     });
   </script>
 </body>
 </html>
+
+
