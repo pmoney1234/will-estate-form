@@ -1363,6 +1363,9 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
           document.getElementById('successorTrusteeFields').innerHTML = '';
           document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
         })
+        // Rebuild/clear summary & dropdowns after reset
+  updateBeneficiaryDropdowns();
+})
         .catch(error => {
           console.error('Error!', error.message);
           showModal('Error', 'An error occurred while submitting the form. Please try again.');
@@ -1372,9 +1375,14 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     document.querySelectorAll('input[id$="Name"]').forEach(input => {
       input.addEventListener('input', updateBeneficiaryDropdowns);
     });
+    document.addEventListener('DOMContentLoaded', () => {
+  updateBeneficiaryDropdowns();
+    });
+
   </script>
 </body>
 </html>
+
 
 
 
