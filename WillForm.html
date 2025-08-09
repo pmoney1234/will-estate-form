@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will & Estate Intake Form</title>
+  <title>Will & Estate Intake Form</title
   <style>
   
     body {
@@ -524,110 +524,113 @@
     });
 
     function generateChildFields(sectionId, numChildren, prefix) {
-      const container = document.getElementById(sectionId);
-      container.innerHTML = '';
-      for (let i = 1; i <= numChildren; i++) {
-        const childDiv = document.createElement('div');
-        childDiv.innerHTML = `
-          <label>Child ${i} Name and Date of Birth</label>
-          <div class="name-dob-row">
-            <input type="text" id="${prefix}Child${i}" name="${prefix}Child${i}" placeholder="Child Name">
-            <input type="date" id="${prefix}Child${i}Dob" name="${prefix}Child${i}Dob">
-          </div>
-          <label for="${prefix}Child${i}LivesWithYou">Does Child ${i} live with you?</label>
-          <select id="${prefix}Child${i}LivesWithYou" name="${prefix}Child${i}LivesWithYou" class="lives-with-you">
-            <option value="">-- Select --</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-          <div id="${prefix}Child${i}AddressFields" class="hidden">
-            <label for="${prefix}Child${i}Address">Child ${i} Street Address</label>
-            <input type="text" id="${prefix}Child${i}Address" name="${prefix}Child${i}Address">
-            <label>Child ${i} City, State, Zip Code</label>
-            <div class="address-row">
-              <input type="text" class="city" id="${prefix}Child${i}City" name="${prefix}Child${i}City" placeholder="City">
-              <input type="text" class="state" id="${prefix}Child${i}State" name="${prefix}Child${i}State" placeholder="State">
-              <input type="text" class="zip" id="${prefix}Child${i}Zip" name="${prefix}Child${i}Zip" placeholder="Zip Code">
-            </div>
-          </div>
-        `;
-        container.appendChild(childDiv);
+  const container = document.getElementById(sectionId);
+  container.innerHTML = '';
+  for (let i = 1; i <= numChildren; i++) {
+    const childDiv = document.createElement('div');
+    childDiv.innerHTML = `
+      <label>Child ${i} Name and Date of Birth</label>
+      <div class="name-dob-row">
+        <input type="text" id="${prefix}Child${i}Name" name="${prefix}Child${i}Name" placeholder="Child Name">
+        <input type="date" id="${prefix}Child${i}Dob" name="${prefix}Child${i}Dob">
+      </div>
+      <label for="${prefix}Child${i}LivesWithYou">Does Child ${i} live with you?</label>
+      <select id="${prefix}Child${i}LivesWithYou" name="${prefix}Child${i}LivesWithYou" class="lives-with-you">
+        <option value="">-- Select --</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <div id="${prefix}Child${i}AddressFields" class="hidden">
+        <label for="${prefix}Child${i}Address">Child ${i} Street Address</label>
+        <input type="text" id="${prefix}Child${i}Address" name="${prefix}Child${i}Address">
+        <label>Child ${i} City, State, Zip Code</label>
+        <div class="address-row">
+          <input type="text" class="city" id="${prefix}Child${i}City" name="${prefix}Child${i}City" placeholder="City">
+          <input type="text" class="state" id="${prefix}Child${i}State" name="${prefix}Child${i}State" placeholder="State">
+          <input type="text" class="zip" id="${prefix}Child${i}Zip" name="${prefix}Child${i}Zip" placeholder="Zip Code">
+        </div>
+      </div>
+    `;
+    container.appendChild(childDiv);
 
-        childDiv.querySelector(`#${prefix}Child${i}LivesWithYou`).addEventListener('change', function() {
-          const addressFields = document.getElementById(`${prefix}Child${i}AddressFields`);
-          addressFields.classList.toggle('hidden', this.value === 'yes');
-        });
+    childDiv.querySelector(`#${prefix}Child${i}LivesWithYou`).addEventListener('change', function() {
+      const addressFields = document.getElementById(`${prefix}Child${i}AddressFields`);
+      addressFields.classList.toggle('hidden', this.value === 'yes');
+    });
 
-        childDiv.querySelector(`#${prefix}Child${i}Dob`).addEventListener('change', checkForMinors);
-      }
-    }
+    childDiv.querySelector(`#${prefix}Child${i}Dob`).addEventListener('change', checkForMinors);
+  }
+}
+
 
     function generateSiblingFields(sectionId, numSiblings, prefix = 'sibling') {
-      const container = document.getElementById(sectionId);
-      container.innerHTML = '';
-      for (let i = 1; i <= numSiblings; i++) {
-        const siblingDiv = document.createElement('div');
-        siblingDiv.innerHTML = `
-          <label>Sibling ${i} Information</label>
-          <div class="sibling-row">
-            <input type="text" id="${prefix}${i}Name" name="${prefix}${i}Name" placeholder="Name">
-            <input type="date" id="${prefix}${i}Dob" name="${prefix}${i}Dob" placeholder="Date of Birth">
-            <select id="${prefix}${i}Relationship" name="${prefix}${i}Relationship">
-              <option value="">-- Select --</option>
-              <option value="brother">Brother</option>
-              <option value="sister">Sister</option>
-            </select>
-          </div>
-          <label for="${prefix}${i}Address">Sibling ${i} Street Address</label>
-          <input type="text" id="${prefix}${i}Address" name="${prefix}${i}Address">
-          <label>Sibling ${i} City, State, Zip Code</label>
-          <div class="address-row">
-            <input type="text" class="city" id="${prefix}${i}City" name="${prefix}${i}City" placeholder="City">
-            <input type="text" class="state" id="${prefix}${i}State" name="${prefix}${i}State" placeholder="State">
-            <input type="text" class="zip" id="${prefix}${i}Zip" name="${prefix}${i}Zip" placeholder="Zip Code">
-          </div>
-        `;
-        container.appendChild(siblingDiv);
-      }
-    }
+  const container = document.getElementById(sectionId);
+  container.innerHTML = '';
+  for (let i = 1; i <= numSiblings; i++) {
+    const siblingDiv = document.createElement('div');
+    siblingDiv.innerHTML = `
+      <label>Sibling ${i} Information</label>
+      <div class="sibling-row">
+        <input type="text" id="${prefix}${i}Name" name="${prefix}${i}Name" placeholder="Name">
+        <input type="date" id="${prefix}${i}Dob" name="${prefix}${i}Dob" placeholder="Date of Birth">
+        <select id="${prefix}${i}Relationship" name="${prefix}${i}Relationship">
+          <option value="">-- Select --</option>
+          <option value="brother">Brother</option>
+          <option value="sister">Sister</option>
+        </select>
+      </div>
+      <label for="${prefix}${i}Address">Sibling ${i} Street Address</label>
+      <input type="text" id="${prefix}${i}Address" name="${prefix}${i}Address">
+      <label>Sibling ${i} City, State, Zip Code</label>
+      <div class="address-row">
+        <input type="text" class="city" id="${prefix}${i}City" name="${prefix}${i}City" placeholder="City">
+        <input type="text" class="state" id="${prefix}${i}State" name="${prefix}${i}State" placeholder="State">
+        <input type="text" class="zip" id="${prefix}${i}Zip" name="${prefix}${i}Zip" placeholder="Zip Code">
+      </div>
+    `;
+    container.appendChild(siblingDiv);
+  }
+}
+
 
     function generateAdditionalBeneficiaryFields(sectionId, numBeneficiaries) {
-      const container = document.getElementById(sectionId);
-      container.innerHTML = '';
-      for (let i = 1; i <= numBeneficiaries; i++) {
-        const beneficiaryDiv = document.createElement('div');
-        beneficiaryDiv.innerHTML = `
-          <label>Additional Beneficiary ${i} Information</label>
-          <div class="beneficiary-row">
-            <input type="text" id="additionalBeneficiary${i}Name" name="additionalBeneficiary${i}Name" placeholder="Full Name">
-            <select id="additionalBeneficiary${i}Relation" name="additionalBeneficiary${i}Relation">
-              <option value="">-- Select Relation --</option>
-              <option value="friend">Friend</option>
-              <option value="aunt">Aunt</option>
-              <option value="uncle">Uncle</option>
-              <option value="step-sister">Step-Sister</option>
-              <option value="step-brother">Step-Brother</option>
-              <option value="step-child">Step-Child</option>
-              <option value="cousin">Cousin</option>
-              <option value="niece">Niece</option>
-              <option value="nephew">Nephew</option>
-              <option value="grandparent">Grandparent</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <label for="additionalBeneficiary${i}Address">Additional Beneficiary ${i} Street Address</label>
-          <input type="text" id="additionalBeneficiary${i}Address" name="additionalBeneficiary${i}Address">
-          <label>Additional Beneficiary ${i} City, State, Zip Code</label>
-          <div class="address-row">
-            <input type="text" class="city" id="additionalBeneficiary${i}City" name="additionalBeneficiary${i}City" placeholder="City">
-            <input type="text" class="state" id="additionalBeneficiary${i}State" name="additionalBeneficiary${i}State" placeholder="State">
-            <input type="text" class="zip" id="additionalBeneficiary${i}Zip" name="additionalBeneficiary${i}Zip" placeholder="Zip Code">
-          </div>
-        `;
-        container.appendChild(beneficiaryDiv);
-      }
-      updateBeneficiaryDropdowns();
-    }
+  const container = document.getElementById(sectionId);
+  container.innerHTML = '';
+  for (let i = 1; i <= numBeneficiaries; i++) {
+    const beneficiaryDiv = document.createElement('div');
+    beneficiaryDiv.innerHTML = `
+      <label>Additional Beneficiary ${i} Information</label>
+      <div class="beneficiary-row">
+        <input type="text" id="additionalBeneficiary${i}Name" name="additionalBeneficiary${i}Name" placeholder="Full Name">
+        <select id="additionalBeneficiary${i}Relation" name="additionalBeneficiary${i}Relation">
+          <option value="">-- Select Relation --</option>
+          <option value="friend">Friend</option>
+          <option value="aunt">Aunt</option>
+          <option value="uncle">Uncle</option>
+          <option value="step-sister">Step-Sister</option>
+          <option value="step-brother">Step-Brother</option>
+          <option value="step-child">Step-Child</option>
+          <option value="cousin">Cousin</option>
+          <option value="niece">Niece</option>
+          <option value="nephew">Nephew</option>
+          <option value="grandparent">Grandparent</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <label for="additionalBeneficiary${i}Address">Additional Beneficiary ${i} Street Address</label>
+      <input type="text" id="additionalBeneficiary${i}Address" name="additionalBeneficiary${i}Address">
+      <label>Additional Beneficiary ${i} City, State, Zip Code</label>
+      <div class="address-row">
+        <input type="text" class="city" id="additionalBeneficiary${i}City" name="additionalBeneficiary${i}City" placeholder="City">
+        <input type="text" class="state" id="additionalBeneficiary${i}State" name="additionalBeneficiary${i}State" placeholder="State">
+        <input type="text" class="zip" id="additionalBeneficiary${i}Zip" name="additionalBeneficiary${i}Zip" placeholder="Zip Code">
+      </div>
+    `;
+    container.appendChild(beneficiaryDiv);
+  }
+  updateBeneficiaryDropdowns();
+}
+
 
     function generateOutOfStatePropertyFields(sectionId, numProperties) {
       const container = document.getElementById(sectionId);
@@ -1398,6 +1401,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
