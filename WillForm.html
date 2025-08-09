@@ -701,7 +701,7 @@
             <input type="text" class="city" id="additionalBeneficiary${i}City" name="additionalBeneficiary${i}City" placeholder="City">
             <input type="text" class="state" id="additionalBeneficiary${i}State" name="additionalBeneficiary${i}State" placeholder="State">
             <input type="text" class="zip" id="additionalBeneficiary${i}Zip" name="additionalBeneficiary${i}Zip" placeholder="Zip Code">
-          </div>
+            </div>
         `;
         container.appendChild(beneficiaryDiv);
       }
@@ -880,4 +880,449 @@
         beneficiaryDiv.innerHTML = `
           <label for="residuaryBeneficiary${i}">Residuary Beneficiary ${i}</label>
           <select id="residuaryBeneficiary${i}" name="residuaryBeneficiary${i}">
-            <option value="">-- Select
+            <option value="">-- Select --</option>
+            <option value="other">Other</option>
+          </select>
+          <div id="residuaryBeneficiary${i}Other" class="hidden">
+            <label for="residuaryBeneficiary${i}Name">Name</label>
+            <input type="text" id="residuaryBeneficiary${i}Name" name="residuaryBeneficiary${i}Name">
+            <label for="residuaryBeneficiary${i}Relation">Relation</label>
+            <select id="residuaryBeneficiary${i}Relation" name="residuaryBeneficiary${i}Relation">
+              <option value="">-- Select Relation --</option>
+              <option value="friend">Friend</option>
+              <option value="aunt">Aunt</option>
+              <option value="uncle">Uncle</option>
+              <option value="step-sister">Step-Sister</option>
+              <option value="step-brother">Step-Brother</option>
+              <option value="step-child">Step-Child</option>
+              <option value="cousin">Cousin</option>
+              <option value="niece">Niece</option>
+              <option value="nephew">Nephew</option>
+              <option value="grandparent">Grandparent</option>
+              <option value="other">Other</option>
+            </select>
+            <label for="residuaryBeneficiary${i}Address">Street Address</label>
+            <input type="text" id="residuaryBeneficiary${i}Address" name="residuaryBeneficiary${i}Address">
+            <label>City, State, Zip Code</label>
+            <div class="address-row">
+              <input type="text" class="city" id="residuaryBeneficiary${i}City" name="residuaryBeneficiary${i}City" placeholder="City">
+              <input type="text" class="state" id="residuaryBeneficiary${i}State" name="residuaryBeneficiary${i}State" placeholder="State">
+              <input type="text" class="zip" id="residuaryBeneficiary${i}Zip" name="residuaryBeneficiary${i}Zip" placeholder="Zip Code">
+            </div>
+          </div>
+        `;
+        container.appendChild(beneficiaryDiv);
+        beneficiaryDiv.querySelector(`#residuaryBeneficiary${i}`).addEventListener('change', function() {
+          const otherFields = document.getElementById(`residuaryBeneficiary${i}Other`);
+          otherFields.classList.toggle('hidden', this.value !== 'other');
+        });
+      }
+      updateBeneficiaryDropdowns();
+    }
+    function generateTrustDistributionFields() {
+      const container = document.getElementById('trustDistributionAges');
+      container.innerHTML = ''; // Clear previous fields
+      const children = [];
+      for (let i = 1; i <= 100; i++) {
+        const singleChildDob = document.getElementById(`singleChild${i}Dob`)?.value;
+        if (singleChildDob && isMinor(singleChildDob)) {
+          children.push({ id: `singleChild${i}`, name: document.getElementById(`singleChild${i}`)?.value || `Child ${i}` });
+        }
+        const marriedChildDob = document.getElementById(`marriedChild${i}Dob`)?.value;
+        if (marriedChildDob && isMinor(marriedChildDob)) {
+          children.push({ id: `marriedChild${i}`, name: document.getElementById(`marriedChild${i}`)?.value || `Child ${i}` });
+        }
+        const previousChildDob = document.getElementById(`previousChild${i}Dob`)?.value;
+        if (previousChildDob && isMinor(previousChildDob)) {
+          children.push({ id: `previousChild${i}`, name: document.getElementById(`previousChild${i}`)?.value || `Child ${i}` });
+        }
+      }
+      children.forEach(child => {
+        const childDiv = document.createElement('div');
+        childDiv.innerHTML = `
+          <label for="${child.id}TrustAge">Age for ${child.name} to Receive Trust Funds</label>
+          <select id="${child.id}TrustAge" name="${child.id}TrustAge">
+            <option value="">-- Select Age --</option>
+            <option value="18">18</option>
+            <option value="21">21</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+          </select>
+        `;
+        container.appendChild(childDiv);
+      });
+    }
+    function isMinor(dob) {
+      if (!dob) return false;
+      const birthDate = new Date(dob);
+      const today = new Date('2025-08-07');
+      const age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        return age - 1 < 18;
+      }
+      return age < 18;
+    }
+    function checkForMinors() {
+      let hasMinors = false;
+      for (let i = 1; i <= 100; i++) {
+        const singleChildDob = document.getElementById(`singleChild${i}Dob`)?.value;
+        const marriedChildDob = document.getElementById(`marriedChild${i}Dob`)?.value;
+        const previousChildDob = document.getElementById(`previousChild${i}Dob`)?.value;
+        if ((singleChildDob && isMinor(singleChildDob)) ||
+            (marriedChildDob && isMinor(marriedChildDob)) ||
+            (previousChildDob && isMinor(previousChildDob))) {
+          hasMinors = true;
+          break;
+        }
+      }
+      const trustSection = document.getElementById('trustSection');
+      trustSection.classList.toggle('hidden', !hasMinors);
+      if (hasMinors) {
+        const hasTrust = document.getElementById('hasTrust').value;
+        if (hasTrust === 'yes') {
+          generateTrustDistributionFields();
+        }
+      }
+    }
+    function updateBeneficiaryDropdowns() {
+      const beneficiaries = [];
+      // Collect all potential beneficiaries
+      const fullName = document.getElementById('fullName').value;
+      if (fullName) beneficiaries.push({ name: fullName, type: 'self' });
+      const spouseName = document.getElementById('spouseName')?.value;
+      if (spouseName) beneficiaries.push({ name: spouseName, type: 'spouse' });
+      const parent1Name = document.getElementById('parent1Name')?.value;
+      if (parent1Name) beneficiaries.push({ name: parent1Name, type: 'parent1' });
+      const parent2Name = document.getElementById('parent2Name')?.value;
+      if (parent2Name) beneficiaries.push({ name: parent2Name, type: 'parent2' });
+      const parent1MarriedName = document.getElementById('parent1MarriedName')?.value;
+      if (parent1MarriedName) beneficiaries.push({ name: parent1MarriedName, type: 'parent1Married' });
+      const parent2MarriedName = document.getElementById('parent2MarriedName')?.value;
+      if (parent2MarriedName) beneficiaries.push({ name: parent2MarriedName, type: 'parent2Married' });
+      for (let i = 1; i <= 100; i++) {
+        const siblingName = document.getElementById(`sibling${i}Name`)?.value;
+        if (siblingName) beneficiaries.push({ name: siblingName, type: `sibling${i}` });
+        const siblingMarriedName = document.getElementById(`siblingMarried${i}Name`)?.value;
+        if (siblingMarriedName) beneficiaries.push({ name: siblingMarriedName, type: `siblingMarried${i}` });
+        const singleChildName = document.getElementById(`singleChild${i}`)?.value;
+        if (singleChildName) beneficiaries.push({ name: singleChildName, type: `singleChild${i}` });
+        const marriedChildName = document.getElementById(`marriedChild${i}`)?.value;
+        if (marriedChildName) beneficiaries.push({ name: marriedChildName, type: `marriedChild${i}` });
+        const previousChildName = document.getElementById(`previousChild${i}`)?.value;
+        if (previousChildName) beneficiaries.push({ name: previousChildName, type: `previousChild${i}` });
+        const additionalBeneficiaryName = document.getElementById(`additionalBeneficiary${i}Name`)?.value;
+        if (additionalBeneficiaryName) beneficiaries.push({ name: additionalBeneficiaryName, type: `additionalBeneficiary${i}` });
+        const personalRepresentativeName = document.getElementById('personalRepresentativeName')?.value;
+        if (personalRepresentativeName) beneficiaries.push({ name: personalRepresentativeName, type: 'personalRepresentativeOther' });
+        const successorPersonalRepresentativeName = document.getElementById('successorPersonalRepresentativeName')?.value;
+        if (successorPersonalRepresentativeName) beneficiaries.push({ name: successorPersonalRepresentativeName, type: 'successorPersonalRepresentativeOther' });
+        const trusteeName = document.getElementById(`trustee${i}Name`)?.value;
+        if (trusteeName) beneficiaries.push({ name: trusteeName, type: `trustee${i}` });
+        const successorTrusteeName = document.getElementById(`successorTrustee${i}Name`)?.value;
+        if (successorTrusteeName) beneficiaries.push({ name: successorTrusteeName, type: `successorTrustee${i}` });
+        const residuaryBeneficiaryName = document.getElementById(`residuaryBeneficiary${i}Name`)?.value;
+        if (residuaryBeneficiaryName) beneficiaries.push({ name: residuaryBeneficiaryName, type: `residuaryBeneficiary${i}` });
+      }
+      // Update all beneficiary dropdowns
+      const dropdowns = document.querySelectorAll('select[id*="specificGift"][id*="Beneficiary"], select[id^="blanketBeneficiary"], select[id^="residuaryBeneficiary"], #personalRepresentative, #successorPersonalRepresentative, select[id^="trustee"], select[id^="successorTrustee"], select[id*="outOfStateProperty"][id*="Beneficiary"]');
+      dropdowns.forEach(dropdown => {
+        const currentValue = dropdown.value;
+        dropdown.innerHTML = '<option value="">-- Select --</option>';
+        beneficiaries.forEach(b => {
+          const option = document.createElement('option');
+          option.value = b.type;
+          option.textContent = b.name;
+          dropdown.appendChild(option);
+        });
+        if (currentValue) {
+          dropdown.value = currentValue;
+        }
+        // Add "Other" option for specific dropdowns
+        if (dropdown.id.startsWith('personalRepresentative') || dropdown.id.startsWith('successorPersonalRepresentative') || dropdown.id.startsWith('trustee') || dropdown.id.startsWith('successorTrustee') || dropdown.id.startsWith('residuaryBeneficiary')) {
+          const otherOption = document.createElement('option');
+          otherOption.value = 'other';
+          otherOption.textContent = 'Other';
+          dropdown.appendChild(otherOption);
+        }
+      });
+    }
+    function collectNotes() {
+      let notes = '';
+      for (let i = 1; i <= 100; i++) {
+        ['singleChild', 'marriedChild', 'previousChild'].forEach(prefix => {
+          const nameInput = document.getElementById(`${prefix}${i}`);
+          const dobInput = document.getElementById(`${prefix}${i}Dob`);
+          if (nameInput && nameInput.value && dobInput && !dobInput.value) {
+            notes += `You did not enter the birth date of ${nameInput.value}. If they are below the age of 18, you should consider entering at least their birth year in the form and deciding whether to appoint a trustee to manage their inheritance until an appropriate age.\n\n`;
+          }
+        });
+      }
+      document.getElementById('notes').value = notes.trim();
+    }
+    document.getElementById('maritalStatus').addEventListener('change', function() {
+      const singleSection = document.getElementById('singleSection');
+      const marriedSection = document.getElementById('marriedSection');
+      singleSection.classList.add('hidden');
+      marriedSection.classList.add('hidden');
+      if (this.value === 'single') {
+        singleSection.classList.remove('hidden');
+      } else if (this.value === 'married') {
+        marriedSection.classList.remove('hidden');
+      }
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('hasSiblings').addEventListener('change', function() {
+      const siblingsSection = document.getElementById('siblingsSection');
+      siblingsSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('siblingsFields').innerHTML = '';
+        document.getElementById('numSiblings').value = '';
+      }
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('numSiblings').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateSiblingFields('siblingsFields', num);
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('hasSiblingsMarried').addEventListener('change', function() {
+      const siblingsMarriedSection = document.getElementById('siblingsMarriedSection');
+      siblingsMarriedSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('siblingsMarriedFields').innerHTML = '';
+        document.getElementById('numSiblingsMarried').value = '';
+      }
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('numSiblingsMarried').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateSiblingFields('siblingsMarriedFields', num, 'siblingMarried');
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('hasParentsMarried').addEventListener('change', function() {
+      const parentsMarriedSection = document.getElementById('parentsMarriedSection');
+      parentsMarriedSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('parent1MarriedName').value = '';
+        document.getElementById('parent1MarriedAddress').value = '';
+        document.getElementById('parent1MarriedCity').value = '';
+        document.getElementById('parent1MarriedState').value = '';
+        document.getElementById('parent1MarriedZip').value = '';
+        document.getElementById('parent2MarriedName').value = '';
+        document.getElementById('parent2MarriedAddress').value = '';
+        document.getElementById('parent2MarriedCity').value = '';
+        document.getElementById('parent2MarriedState').value = '';
+        document.getElementById('parent2MarriedZip').value = '';
+      }
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('hasChildrenSingle').addEventListener('change', function() {
+      const singleChildrenSection = document.getElementById('singleChildrenSection');
+      singleChildrenSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('singleChildrenFields').innerHTML = '';
+        document.getElementById('numChildrenSingle').value = '';
+      }
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('hasChildrenMarried').addEventListener('change', function() {
+      const marriedChildrenSection = document.getElementById('marriedChildrenSection');
+      marriedChildrenSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('marriedChildrenFields').innerHTML = '';
+        document.getElementById('numChildrenMarried').value = '';
+      }
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('hasChildrenPrevious').addEventListener('change', function() {
+      const previousChildrenSection = document.getElementById('previousChildrenSection');
+      previousChildrenSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('previousChildrenFields').innerHTML = '';
+        document.getElementById('numChildrenPrevious').value = '';
+      }
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('numChildrenSingle').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateChildFields('singleChildrenFields', num, 'single');
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('numChildrenMarried').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateChildFields('marriedChildrenFields', num, 'married');
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('numChildrenPrevious').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateChildFields('previousChildrenFields', num, 'previous');
+      updateBeneficiaryDropdowns();
+      checkForMinors();
+    });
+    document.getElementById('hasAdditionalBeneficiaries').addEventListener('change', function() {
+      const additionalSection = document.getElementById('additionalBeneficiariesDetails');
+      additionalSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('additionalBeneficiaryFields').innerHTML = '';
+        document.getElementById('numAdditionalBeneficiaries').value = '';
+      }
+      updateBeneficiaryDropdowns();
+    });
+    document.getElementById('numAdditionalBeneficiaries').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateAdditionalBeneficiaryFields('additionalBeneficiaryFields', num);
+    });
+    document.getElementById('hasRealProperty').addEventListener('change', function() {
+      const outOfStateWrapper = document.getElementById('outOfStatePropertyWrapper');
+      outOfStateWrapper.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('outOfStatePropertySection').classList.add('hidden');
+        document.getElementById('outOfStatePropertyFields').innerHTML = '';
+        document.getElementById('numOutOfStateProperties').value = '';
+        document.getElementById('hasOutOfStateProperty').value = '';
+      }
+    });
+    document.getElementById('hasOutOfStateProperty').addEventListener('change', function() {
+      const outOfStateSection = document.getElementById('outOfStatePropertySection');
+      outOfStateSection.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value !== 'yes') {
+        document.getElementById('outOfStatePropertyFields').innerHTML = '';
+        document.getElementById('numOutOfStateProperties').value = '';
+      }
+    });
+    document.getElementById('numOutOfStateProperties').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateOutOfStatePropertyFields('outOfStatePropertyFields', num);
+    });
+    document.getElementById('hasTrust').addEventListener('change', function() {
+      const trustDetails = document.getElementById('trustDetails');
+      trustDetails.classList.toggle('hidden', this.value !== 'yes');
+      if (this.value === 'yes') {
+        generateTrustDistributionFields();
+      } else {
+        document.getElementById('trustDistributionAges').innerHTML = '';
+      }
+    });
+    document.getElementById('numTrustees').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateTrusteeFields('trusteeFields', num, 'trustee');
+    });
+    document.getElementById('numSuccessorTrustees').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateTrusteeFields('successorTrusteeFields', num, 'successorTrustee');
+    });
+    document.getElementById('giftType').addEventListener('change', function() {
+      const specificSection = document.getElementById('specificGiftSection');
+      const blanketSection = document.getElementById('blanketGiftSection');
+      const residuarySection = document.getElementById('residuarySection');
+      specificSection.classList.add('hidden');
+      blanketSection.classList.add('hidden');
+      residuarySection.classList.toggle('hidden', this.value !== 'specific');
+      if (this.value === 'specific') {
+        specificSection.classList.remove('hidden');
+      } else if (this.value === 'blanket') {
+        blanketSection.classList.remove('hidden');
+      }
+    });
+    document.getElementById('numSpecificGifts').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateSpecificGiftFields('specificGiftFields', num);
+    });
+    document.getElementById('numBlanketBeneficiaries').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateBlanketBeneficiaryFields('blanketBeneficiaryFields', num);
+    });
+    document.getElementById('numResiduaryBeneficiaries').addEventListener('input', function() {
+      const num = parseInt(this.value) || 0;
+      generateResiduaryBeneficiaryFields('residuaryBeneficiaryFields', num);
+    });
+    document.getElementById('personalRepresentative').addEventListener('change', function() {
+      const otherFields = document.getElementById('personalRepresentativeOther');
+      otherFields.classList.toggle('hidden', this.value !== 'other');
+    });
+    document.getElementById('successorPersonalRepresentative').addEventListener('change', function() {
+      const otherFields = document.getElementById('successorPersonalRepresentativeOther');
+      otherFields.classList.toggle('hidden', this.value !== 'other');
+    });
+    // Add event listeners for the sibling info links
+    document.getElementById('siblingsInfoSingle').addEventListener('click', function(e) {
+      e.preventDefault();
+      showModal('Why We Need This Information', 'Under Alabama law, if you die with no children or spouse, and without a will, your next of kin entitled to notice of the probate of your estate include your parents and siblings that are related by blood.');
+    });
+    document.getElementById('siblingsInfoMarried').addEventListener('click', function(e) {
+      e.preventDefault();
+      showModal('Why We Need This Information', 'Under Alabama law, if you die with no children or spouse, and without a will, your next of kin entitled to notice of the probate of your estate include your parents and siblings that are related by blood.');
+    });
+    // Form submission to Google Sheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwuyhKL1S8HU6JkOnOR5gAG6pAM_08Rpi2gNP-_szciSPVU7bT50UhryGuEC8eh3010/exec'; // Replace with your Google Apps Script Web App URL
+    const form = document.forms['submit-to-google-sheet'];
+    const submitButton = document.getElementById('submitButton');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // Set processing state
+      submitButton.disabled = true;
+      submitButton.textContent = 'Processing...';
+      collectNotes();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          // Restore button state
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+          showModal('Success', 'Form submitted successfully!');
+          form.reset();
+          // Reset dynamic sections
+          document.getElementById('singleSection').classList.add('hidden');
+          document.getElementById('marriedSection').classList.add('hidden');
+          document.getElementById('trustSection').classList.add('hidden');
+          document.getElementById('siblingsSection').classList.add('hidden');
+          document.getElementById('singleChildrenSection').classList.add('hidden');
+          document.getElementById('siblingsMarriedSection').classList.add('hidden');
+          document.getElementById('parentsMarriedSection').classList.add('hidden');
+          document.getElementById('marriedChildrenSection').classList.add('hidden');
+          document.getElementById('previousChildrenSection').classList.add('hidden');
+          document.getElementById('additionalBeneficiariesDetails').classList.add('hidden');
+          document.getElementById('outOfStatePropertyWrapper').classList.add('hidden');
+          document.getElementById('outOfStatePropertySection').classList.add('hidden');
+          document.getElementById('specificGiftSection').classList.add('hidden');
+          document.getElementById('blanketGiftSection').classList.add('hidden');
+          document.getElementById('residuarySection').classList.add('hidden');
+          document.getElementById('trustDetails').classList.add('hidden');
+          document.getElementById('personalRepresentativeOther').classList.add('hidden');
+          document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
+          document.getElementById('siblingsFields').innerHTML = '';
+          document.getElementById('singleChildrenFields').innerHTML = '';
+          document.getElementById('siblingsMarriedFields').innerHTML = '';
+          document.getElementById('marriedChildrenFields').innerHTML = '';
+          document.getElementById('previousChildrenFields').innerHTML = '';
+          document.getElementById('additionalBeneficiaryFields').innerHTML = '';
+          document.getElementById('outOfStatePropertyFields').innerHTML = '';
+          document.getElementById('specificGiftFields').innerHTML = '';
+          document.getElementById('blanketBeneficiaryFields').innerHTML = '';
+          document.getElementById('trustDistributionAges').innerHTML = '';
+          document.getElementById('trusteeFields').innerHTML = '';
+          document.getElementById('successorTrusteeFields').innerHTML = '';
+          document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
+        })
+        .catch(error => {
+          // Restore button state on error
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+          console.error('Error!', error.message);
+          showModal('Error', 'An error occurred while submitting the form. Please try again.');
+        });
+    });
+    // Update beneficiary dropdowns when any name field changes
+    document.querySelectorAll('input[id$="Name"]').forEach(input => {
+      input.addEventListener('input', updateBeneficiaryDropdowns);
+    });
+  </script>
+</body>
+</html>
