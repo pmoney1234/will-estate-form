@@ -1378,10 +1378,18 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     document.addEventListener('DOMContentLoaded', () => {
   updateBeneficiaryDropdowns();
     });
+    // Prevent Enter key from submitting the form
+document.getElementById('estateForm').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    e.preventDefault(); // stop form submission
+  }
+});
+
 
   </script>
 </body>
 </html>
+
 
 
 
