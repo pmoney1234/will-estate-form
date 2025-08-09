@@ -1379,22 +1379,23 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
 
       updateBeneficiaryDropdowns();
 
-      // 🔹 Re-enable button after successful submit
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit';
-    })
-    .catch(error => {
-      console.error('Error!', error.message);
-      showModal('Error', 'An error occurred while submitting the form. Please try again.');
+     // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit';
+  })
+  .catch(error => {
+    console.error('Error!', error.message);
+    showModal('Error', 'An error occurred while submitting the form. Please try again.');
 
-      // 🔹 Re-enable button after error
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit';
-    });
+    // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit';
+  });
 });
 </script>
 </body>
 </html>
+
 
 
 
