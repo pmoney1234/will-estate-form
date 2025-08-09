@@ -913,171 +913,211 @@
     }
 
    // Build a single source of truth for all beneficiaries
-function getBeneficiaries() {
-  const beneficiaries = [];
+ // Build a single source of truth for all beneficiaries
+  function getBeneficiaries() {
+    const beneficiaries = [];
 
-  const fullName = document.getElementById('fullName')?.value?.trim();
-  if (fullName) beneficiaries.push({ name: fullName, type: 'self' });
+    const fullName = document.getElementById('fullName')?.value?.trim();
+    if (fullName) beneficiaries.push({ name: fullName, type: 'self' });
 
-  const spouseName = document.getElementById('spouseName')?.value?.trim();
-  if (spouseName) beneficiaries.push({ name: spouseName, type: 'spouse' });
+    const spouseName = document.getElementById('spouseName')?.value?.trim();
+    if (spouseName) beneficiaries.push({ name: spouseName, type: 'spouse' });
 
-  const parent1Name = document.getElementById('parent1Name')?.value?.trim();
-  if (parent1Name) beneficiaries.push({ name: parent1Name, type: 'parent1' });
+    const parent1Name = document.getElementById('parent1Name')?.value?.trim();
+    if (parent1Name) beneficiaries.push({ name: parent1Name, type: 'parent1' });
 
-  const parent2Name = document.getElementById('parent2Name')?.value?.trim();
-  if (parent2Name) beneficiaries.push({ name: parent2Name, type: 'parent2' });
+    const parent2Name = document.getElementById('parent2Name')?.value?.trim();
+    if (parent2Name) beneficiaries.push({ name: parent2Name, type: 'parent2' });
 
-  const parent1MarriedName = document.getElementById('parent1MarriedName')?.value?.trim();
-  if (parent1MarriedName) beneficiaries.push({ name: parent1MarriedName, type: 'parent1Married' });
+    const parent1MarriedName = document.getElementById('parent1MarriedName')?.value?.trim();
+    if (parent1MarriedName) beneficiaries.push({ name: parent1MarriedName, type: 'parent1Married' });
 
-  const parent2MarriedName = document.getElementById('parent2MarriedName')?.value?.trim();
-  if (parent2MarriedName) beneficiaries.push({ name: parent2MarriedName, type: 'parent2Married' });
+    const parent2MarriedName = document.getElementById('parent2MarriedName')?.value?.trim();
+    if (parent2MarriedName) beneficiaries.push({ name: parent2MarriedName, type: 'parent2Married' });
 
-  for (let i = 1; i <= 200; i++) {
-    const s = document.getElementById(`sibling${i}Name`)?.value?.trim();
-    if (s) beneficiaries.push({ name: s, type: `sibling${i}` });
+    for (let i = 1; i <= 200; i++) {
+      const s = document.getElementById(`sibling${i}Name`)?.value?.trim();
+      if (s) beneficiaries.push({ name: s, type: `sibling${i}` });
 
-    const sm = document.getElementById(`siblingMarried${i}Name`)?.value?.trim();
-    if (sm) beneficiaries.push({ name: sm, type: `siblingMarried${i}` });
+      const sm = document.getElementById(`siblingMarried${i}Name`)?.value?.trim();
+      if (sm) beneficiaries.push({ name: sm, type: `siblingMarried${i}` });
 
-    const c1 = document.getElementById(`singleChild${i}`)?.value?.trim();
-    if (c1) beneficiaries.push({ name: c1, type: `singleChild${i}` });
+      const c1 = document.getElementById(`singleChild${i}`)?.value?.trim();
+      if (c1) beneficiaries.push({ name: c1, type: `singleChild${i}` });
 
-    const c2 = document.getElementById(`marriedChild${i}`)?.value?.trim();
-    if (c2) beneficiaries.push({ name: c2, type: `marriedChild${i}` });
+      const c2 = document.getElementById(`marriedChild${i}`)?.value?.trim();
+      if (c2) beneficiaries.push({ name: c2, type: `marriedChild${i}` });
 
-    const c3 = document.getElementById(`previousChild${i}`)?.value?.trim();
-    if (c3) beneficiaries.push({ name: c3, type: `previousChild${i}` });
+      const c3 = document.getElementById(`previousChild${i}`)?.value?.trim();
+      if (c3) beneficiaries.push({ name: c3, type: `previousChild${i}` });
 
-    const ab = document.getElementById(`additionalBeneficiary${i}Name`)?.value?.trim();
-    if (ab) beneficiaries.push({ name: ab, type: `additionalBeneficiary${i}` });
+      const ab = document.getElementById(`additionalBeneficiary${i}Name`)?.value?.trim();
+      if (ab) beneficiaries.push({ name: ab, type: `additionalBeneficiary${i}` });
 
-    const tr = document.getElementById(`trustee${i}Name`)?.value?.trim();
-    if (tr) beneficiaries.push({ name: tr, type: `trustee${i}` });
+      const tr = document.getElementById(`trustee${i}Name`)?.value?.trim();
+      if (tr) beneficiaries.push({ name: tr, type: `trustee${i}` });
 
-    const str = document.getElementById(`successorTrustee${i}Name`)?.value?.trim();
-    if (str) beneficiaries.push({ name: str, type: `successorTrustee${i}` });
+      const str = document.getElementById(`successorTrustee${i}Name`)?.value?.trim();
+      if (str) beneficiaries.push({ name: str, type: `successorTrustee${i}` });
 
-    const rb = document.getElementById(`residuaryBeneficiary${i}Name`)?.value?.trim();
-    if (rb) beneficiaries.push({ name: rb, type: `residuaryBeneficiary${i}` });
+      const rb = document.getElementById(`residuaryBeneficiary${i}Name`)?.value?.trim();
+      if (rb) beneficiaries.push({ name: rb, type: `residuaryBeneficiary${i}` });
+    }
+
+    const pr = document.getElementById('personalRepresentativeName')?.value?.trim();
+    if (pr) beneficiaries.push({ name: pr, type: 'personalRepresentativeOther' });
+
+    const spr = document.getElementById('successorPersonalRepresentativeName')?.value?.trim();
+    if (spr) beneficiaries.push({ name: spr, type: 'successorPersonalRepresentativeOther' });
+
+    return beneficiaries;
   }
 
-  const pr = document.getElementById('personalRepresentativeName')?.value?.trim();
-  if (pr) beneficiaries.push({ name: pr, type: 'personalRepresentativeOther' });
+  // Render the summary list
+  function renderBeneficiarySummary(beneficiaries) {
+    const list = document.getElementById('beneficiarySummary');
+    const empty = document.getElementById('beneficiarySummaryEmpty');
+    if (!list || !empty) return;
 
-  const spr = document.getElementById('successorPersonalRepresentativeName')?.value?.trim();
-  if (spr) beneficiaries.push({ name: spr, type: 'successorPersonalRepresentativeOther' });
+    list.innerHTML = '';
+    if (!beneficiaries.length) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
 
-  return beneficiaries;
-}
-
-// Render the summary list
-function renderBeneficiarySummary(beneficiaries) {
-  const list = document.getElementById('beneficiarySummary');
-  const empty = document.getElementById('beneficiarySummaryEmpty');
-  if (!list || !empty) return;
-
-  list.innerHTML = '';
-  if (!beneficiaries.length) {
-    empty.style.display = 'block';
-    return;
+    beneficiaries.forEach((b, idx) => {
+      const li = document.createElement('li');
+      li.textContent = b.name;
+      li.setAttribute('data-type', b.type);
+      li.setAttribute('aria-label', `Beneficiary ${idx + 1}: ${b.name}`);
+      list.appendChild(li);
+    });
   }
-  empty.style.display = 'none';
 
-  beneficiaries.forEach((b, idx) => {
-    const li = document.createElement('li');
-    li.textContent = b.name;
-    li.setAttribute('data-type', b.type);
-    li.setAttribute('aria-label', `Beneficiary ${idx + 1}: ${b.name}`);
-    list.appendChild(li);
-  });
-}
+  function updateBeneficiaryDropdowns() {
+    const beneficiaries = getBeneficiaries();
 
-   function updateBeneficiaryDropdowns() {
-  // Build the beneficiary list from the current form state
-  const beneficiaries = getBeneficiaries();
+    const selector = [
+      'select[id*="specificGift"][id*="Beneficiary"]',
+      'select[id^="blanketBeneficiary"]',
+      'select[id^="residuaryBeneficiary"]',
+      '#personalRepresentative',
+      '#successorPersonalRepresentative',
+      'select[id^="trustee"]',
+      'select[id^="successorTrustee"]',
+      'select[id*="outOfStateProperty"][id*="Beneficiary"]'
+    ].join(', ');
 
-  // Optional: keep the summary & dropdowns alphabetized by name
-  // beneficiaries.sort((a, b) => a.name.localeCompare(b.name));
+    const dropdowns = document.querySelectorAll(selector);
 
-  const selector = [
-    'select[id*="specificGift"][id*="Beneficiary"]',
-    'select[id^="blanketBeneficiary"]',
-    'select[id^="residuaryBeneficiary"]',
-    '#personalRepresentative',
-    '#successorPersonalRepresentative',
-    'select[id^="trustee"]',
-    'select[id^="successorTrustee"]',
-    'select[id*="outOfStateProperty"][id*="Beneficiary"]'
-  ].join(', ');
+    dropdowns.forEach((dropdown) => {
+      const previousValue = dropdown.value;
 
-  const dropdowns = document.querySelectorAll(selector);
+      dropdown.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = '-- Select --';
+      dropdown.appendChild(placeholder);
 
-  dropdowns.forEach((dropdown) => {
-    const previousValue = dropdown.value;
+      beneficiaries.forEach((b) => {
+        const opt = document.createElement('option');
+        opt.value = b.type;
+        opt.textContent = b.name;
+        dropdown.appendChild(opt);
+      });
 
-    // Reset with placeholder
-    dropdown.innerHTML = '';
-    const placeholder = document.createElement('option');
-    placeholder.value = '';
-    placeholder.textContent = '-- Select --';
-    dropdown.appendChild(placeholder);
+      const needsOther =
+        dropdown.id.startsWith('personalRepresentative') ||
+        dropdown.id.startsWith('successorPersonalRepresentative') ||
+        dropdown.id.startsWith('trustee') ||
+        dropdown.id.startsWith('successorTrustee') ||
+        dropdown.id.startsWith('residuaryBeneficiary');
 
-    // Populate with current beneficiaries
-    beneficiaries.forEach((b) => {
-      const opt = document.createElement('option');
-      opt.value = b.type;       // stable identifier used elsewhere in the form
-      opt.textContent = b.name; // human-readable label
-      dropdown.appendChild(opt);
+      if (needsOther) {
+        const otherOpt = document.createElement('option');
+        otherOpt.value = 'other';
+        otherOpt.textContent = 'Other';
+        dropdown.appendChild(otherOpt);
+      }
+
+      if (
+        previousValue &&
+        Array.from(dropdown.options).some((o) => o.value === previousValue)
+      ) {
+        dropdown.value = previousValue;
+      } else {
+        dropdown.value = '';
+      }
     });
 
-    // For these dropdowns, include an "Other" option to allow free entry
-    const needsOther =
-      dropdown.id.startsWith('personalRepresentative') ||
-      dropdown.id.startsWith('successorPersonalRepresentative') ||
-      dropdown.id.startsWith('trustee') ||
-      dropdown.id.startsWith('successorTrustee') ||
-      dropdown.id.startsWith('residuaryBeneficiary');
+    renderBeneficiarySummary(beneficiaries);
+  }
 
-    if (needsOther) {
-      const otherOpt = document.createElement('option');
-      otherOpt.value = 'other';
-      otherOpt.textContent = 'Other';
-      dropdown.appendChild(otherOpt);
-    }
-
-    // Restore the user's previous selection if it still exists
+  // Live updates on input
+  document.getElementById('estateForm').addEventListener('input', function (e) {
+    const id = e.target.id || '';
     if (
-      previousValue &&
-      Array.from(dropdown.options).some((o) => o.value === previousValue)
+      /Name$/.test(id) ||
+      /(singleChild|marriedChild|previousChild)\d+$/.test(id) ||
+      /additionalBeneficiary\d+Name$/.test(id) ||
+      /trustee\d+Name$/.test(id) ||
+      /successorTrustee\d+Name$/.test(id) ||
+      /residuaryBeneficiary\d+Name$/.test(id)
     ) {
-      dropdown.value = previousValue;
-    } else {
-      dropdown.value = '';
+      updateBeneficiaryDropdowns();
     }
   });
 
-  // Keep the live summary panel in sync
-  renderBeneficiarySummary(beneficiaries);
-}
-
-    // Fire live updates whenever likely name fields are edited
-document.getElementById('estateForm').addEventListener('input', function (e) {
-  const id = e.target.id || '';
-  // Update when any probable name input is edited
-  if (
-    /Name$/.test(id) ||                            // ...Name
-    /(singleChild|marriedChild|previousChild)\d+$/.test(id) || // child name fields
-    /additionalBeneficiary\d+Name$/.test(id) ||
-    /trustee\d+Name$/.test(id) ||
-    /successorTrustee\d+Name$/.test(id) ||
-    /residuaryBeneficiary\d+Name$/.test(id)
-  ) {
+  // Initialize summary on load
+  document.addEventListener('DOMContentLoaded', () => {
     updateBeneficiaryDropdowns();
-  }
-});
+  });
 
+  // Prevent Enter key from submitting the form (except textarea)
+  document.getElementById('estateForm').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
+      e.preventDefault();
+    }
+  });
+
+  // Submit handler
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwuyhKL1S8HU6JkOnOR5gAG6pAM_08Rpi2gNP-_szciSPVU7bT50UhryGuEC8eh3010/exec';
+  const form = document.forms['submit-to-google-sheet'];
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    collectNotes();
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+      .then(response => {
+        showModal('Success', 'Form submitted successfully!');
+        form.reset();
+
+        // Hide all dynamic sections
+        document.querySelectorAll(
+          '#singleSection, #marriedSection, #trustSection, #siblingsSection, #singleChildrenSection, ' +
+          '#siblingsMarriedSection, #parentsMarriedSection, #marriedChildrenSection, #previousChildrenSection, ' +
+          '#additionalBeneficiariesDetails, #outOfStatePropertyWrapper, #outOfStatePropertySection, ' +
+          '#specificGiftSection, #blanketGiftSection, #residuarySection, #trustDetails, ' +
+          '#personalRepresentativeOther, #successorPersonalRepresentativeOther'
+        ).forEach(el => el.classList.add('hidden'));
+
+        // Clear all dynamic field containers
+        document.querySelectorAll(
+          '#siblingsFields, #singleChildrenFields, #siblingsMarriedFields, #marriedChildrenFields, ' +
+          '#previousChildrenFields, #additionalBeneficiaryFields, #outOfStatePropertyFields, ' +
+          '#specificGiftFields, #blanketBeneficiaryFields, #trustDistributionAges, #trusteeFields, ' +
+          '#successorTrusteeFields, #residuaryBeneficiaryFields'
+        ).forEach(el => el.innerHTML = '');
+
+        // Rebuild summary & dropdowns after reset
+        updateBeneficiaryDropdowns();
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        showModal('Error', 'An error occurred while submitting the form. Please try again.');
+      });
+  });
     function collectNotes() {
       let notes = '';
       for (let i = 1; i <= 100; i++) {
@@ -1389,6 +1429,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
   </script>
 </body>
 </html>
+
 
 
 
