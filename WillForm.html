@@ -1324,62 +1324,10 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     const form = document.forms['submit-to-google-sheet'];
 
     form.addEventListener('submit', e => {
-      e.preventDefault();
-      collectNotes();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
-          showModal('Success', 'Form submitted successfully!');
-          form.reset();
+  e.preventDefault();
+  collectNotes();
 
-          document.getElementById('singleSection').classList.add('hidden');
-          document.getElementById('marriedSection').classList.add('hidden');
-          document.getElementById('trustSection').classList.add('hidden');
-          document.getElementById('siblingsSection').classList.add('hidden');
-          document.getElementById('singleChildrenSection').classList.add('hidden');
-          document.getElementById('siblingsMarriedSection').classList.add('hidden');
-          document.getElementById('parentsMarriedSection').classList.add('hidden');
-          document.getElementById('marriedChildrenSection').classList.add('hidden');
-          document.getElementById('previousChildrenSection').classList.add('hidden');
-          document.getElementById('additionalBeneficiariesDetails').classList.add('hidden');
-          document.getElementById('outOfStatePropertyWrapper').classList.add('hidden');
-          document.getElementById('outOfStatePropertySection').classList.add('hidden');
-          document.getElementById('specificGiftSection').classList.add('hidden');
-          document.getElementById('blanketGiftSection').classList.add('hidden');
-          document.getElementById('residuarySection').classList.add('hidden');
-          document.getElementById('trustDetails').classList.add('hidden');
-          document.getElementById('personalRepresentativeOther').classList.add('hidden');
-          document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
-
-          document.getElementById('siblingsFields').innerHTML = '';
-          document.getElementById('singleChildrenFields').innerHTML = '';
-          document.getElementById('siblingsMarriedFields').innerHTML = '';
-          document.getElementById('marriedChildrenFields').innerHTML = '';
-          document.getElementById('previousChildrenFields').innerHTML = '';
-          document.getElementById('additionalBeneficiaryFields').innerHTML = '';
-          document.getElementById('outOfStatePropertyFields').innerHTML = '';
-          document.getElementById('specificGiftFields').innerHTML = '';
-          document.getElementById('blanketBeneficiaryFields').innerHTML = '';
-          document.getElementById('trustDistributionAges').innerHTML = '';
-          document.getElementById('trusteeFields').innerHTML = '';
-          document.getElementById('successorTrusteeFields').innerHTML = '';
-          document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
-        })
-        // Rebuild/clear summary & dropdowns after reset
-  updateBeneficiaryDropdowns();
-})
-        .catch(error => {
-          console.error('Error!', error.message);
-          showModal('Error', 'An error occurred while submitting the form. Please try again.');
-        });
-    });
-
-    document.querySelectorAll('input[id$="Name"]').forEach(input => {
-      input.addEventListener('input', updateBeneficiaryDropdowns);
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-    updateBeneficiaryDropdowns();
-  });
-    // 🔹 Disable button and show "Processing..."
+  // 🔹 Disable button and show "Processing..."
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
   submitBtn.textContent = 'Processing...';
@@ -1388,7 +1336,39 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     .then(response => {
       showModal('Success', 'Form submitted successfully!');
       form.reset();
-      // ... your reset/hide logic ...
+
+      document.getElementById('singleSection').classList.add('hidden');
+      document.getElementById('marriedSection').classList.add('hidden');
+      document.getElementById('trustSection').classList.add('hidden');
+      document.getElementById('siblingsSection').classList.add('hidden');
+      document.getElementById('singleChildrenSection').classList.add('hidden');
+      document.getElementById('siblingsMarriedSection').classList.add('hidden');
+      document.getElementById('parentsMarriedSection').classList.add('hidden');
+      document.getElementById('marriedChildrenSection').classList.add('hidden');
+      document.getElementById('previousChildrenSection').classList.add('hidden');
+      document.getElementById('additionalBeneficiariesDetails').classList.add('hidden');
+      document.getElementById('outOfStatePropertyWrapper').classList.add('hidden');
+      document.getElementById('outOfStatePropertySection').classList.add('hidden');
+      document.getElementById('specificGiftSection').classList.add('hidden');
+      document.getElementById('blanketGiftSection').classList.add('hidden');
+      document.getElementById('residuarySection').classList.add('hidden');
+      document.getElementById('trustDetails').classList.add('hidden');
+      document.getElementById('personalRepresentativeOther').classList.add('hidden');
+      document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
+
+      document.getElementById('siblingsFields').innerHTML = '';
+      document.getElementById('singleChildrenFields').innerHTML = '';
+      document.getElementById('siblingsMarriedFields').innerHTML = '';
+      document.getElementById('marriedChildrenFields').innerHTML = '';
+      document.getElementById('previousChildrenFields').innerHTML = '';
+      document.getElementById('additionalBeneficiaryFields').innerHTML = '';
+      document.getElementById('outOfStatePropertyFields').innerHTML = '';
+      document.getElementById('specificGiftFields').innerHTML = '';
+      document.getElementById('blanketBeneficiaryFields').innerHTML = '';
+      document.getElementById('trustDistributionAges').innerHTML = '';
+      document.getElementById('trusteeFields').innerHTML = '';
+      document.getElementById('successorTrusteeFields').innerHTML = '';
+      document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
 
       updateBeneficiaryDropdowns();
 
@@ -1415,6 +1395,7 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
