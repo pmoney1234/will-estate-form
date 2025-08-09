@@ -1326,19 +1326,24 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     });
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwuyhKL1S8HU6JkOnOR5gAG6pAM_08Rpi2gNP-_szciSPVU7bT50UhryGuEC8eh3010/exec';
-    const form = document.forms['submit-to-google-sheet'];
+const form = document.forms['submit-to-google-sheet'];
+const submitBtn = document.getElementById('submitBtn');
 
-    form.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
   e.preventDefault();
   collectNotes();
 
-  // 🔹 Disable button and show "Processing..."
-  const submitBtn = document.getElementById('submitBtn');
+  // Disable button and show "Processing..."
   submitBtn.disabled = true;
   submitBtn.textContent = 'Processing...';
 
-  fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
+  const formData = new FormData(form);
+  console.log('Form Data:', Object.fromEntries(formData)); // Debug form data
+
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Server Response:', data); // Debug server response
       showModal('Success', 'Form submitted successfully!');
       form.reset();
 
@@ -1386,13 +1391,10 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
     .catch(error => {
       console.error('Error!', error.message);
       showModal('Error', 'An error occurred while submitting the form. Please try again.');
-
-      // Re-enable button
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit';
     });
 });
-
 // ✅ Prevent Enter key from submitting the form except in textareas
 document.getElementById('estateForm').addEventListener('keydown', function (e) {
   if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
@@ -1402,6 +1404,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
