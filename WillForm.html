@@ -1331,22 +1331,22 @@ const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
+  console.log('Form submission started'); // First checkpoint
   collectNotes();
-
   // Disable button and show "Processing..."
   submitBtn.disabled = true;
   submitBtn.textContent = 'Processing...';
-
   const formData = new FormData(form);
   console.log('Form Data:', Object.fromEntries(formData)); // Debug form data
-
   fetch(scriptURL, { method: 'POST', body: formData })
-    .then(response => response.json())
+    .then(response => {
+      console.log('Fetch response received, status:', response.status); // Check response status
+      return response.json();
+    })
     .then(data => {
       console.log('Server Response:', data); // Debug server response
       showModal('Success', 'Form submitted successfully!');
       form.reset();
-
       // Hide/reset all sections
       document.getElementById('singleSection').classList.add('hidden');
       document.getElementById('marriedSection').classList.add('hidden');
@@ -1366,7 +1366,6 @@ form.addEventListener('submit', e => {
       document.getElementById('trustDetails').classList.add('hidden');
       document.getElementById('personalRepresentativeOther').classList.add('hidden');
       document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
-
       // Clear all dynamic fields
       document.getElementById('siblingsFields').innerHTML = '';
       document.getElementById('singleChildrenFields').innerHTML = '';
@@ -1381,15 +1380,13 @@ form.addEventListener('submit', e => {
       document.getElementById('trusteeFields').innerHTML = '';
       document.getElementById('successorTrusteeFields').innerHTML = '';
       document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
-
       updateBeneficiaryDropdowns();
-
       // Re-enable button
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit';
     })
     .catch(error => {
-      console.error('Error!', error.message);
+      console.error('Fetch Error:', error.message); // Detailed error logging
       showModal('Error', 'An error occurred while submitting the form. Please try again.');
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit';
@@ -1404,6 +1401,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
