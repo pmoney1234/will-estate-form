@@ -1337,6 +1337,7 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
       showModal('Success', 'Form submitted successfully!');
       form.reset();
 
+      // Hide/reset all sections
       document.getElementById('singleSection').classList.add('hidden');
       document.getElementById('marriedSection').classList.add('hidden');
       document.getElementById('trustSection').classList.add('hidden');
@@ -1356,6 +1357,7 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
       document.getElementById('personalRepresentativeOther').classList.add('hidden');
       document.getElementById('successorPersonalRepresentativeOther').classList.add('hidden');
 
+      // Clear all dynamic fields
       document.getElementById('siblingsFields').innerHTML = '';
       document.getElementById('singleChildrenFields').innerHTML = '';
       document.getElementById('siblingsMarriedFields').innerHTML = '';
@@ -1369,28 +1371,34 @@ document.getElementById('estateForm').addEventListener('input', function (e) {
       document.getElementById('trusteeFields').innerHTML = '';
       document.getElementById('successorTrusteeFields').innerHTML = '';
       document.getElementById('residuaryBeneficiaryFields').innerHTML = '';
-      document.getElementById('estateForm').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
-      e.preventDefault();
 
       updateBeneficiaryDropdowns();
 
-     // Re-enable button
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit';
-  })
-  .catch(error => {
-    console.error('Error!', error.message);
-    showModal('Error', 'An error occurred while submitting the form. Please try again.');
+      // Re-enable button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    })
+    .catch(error => {
+      console.error('Error!', error.message);
+      showModal('Error', 'An error occurred while submitting the form. Please try again.');
 
-    // Re-enable button
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Submit';
-  });
+      // Re-enable button
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+    });
+});
+
+// ✅ Prevent Enter key from submitting the form except in textareas
+document.getElementById('estateForm').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
+    e.preventDefault();
+  }
 });
 </script>
 </body>
 </html>
+
+
 
 
 
