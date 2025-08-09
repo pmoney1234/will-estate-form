@@ -1331,7 +1331,7 @@ const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  console.log('Form submission started'); // First checkpoint
+  console.log('Form submission started'); // Initial log
   collectNotes();
   // Disable button and show "Processing..."
   submitBtn.disabled = true;
@@ -1340,11 +1340,21 @@ form.addEventListener('submit', e => {
   console.log('Form Data:', Object.fromEntries(formData)); // Debug form data
   fetch(scriptURL, { method: 'POST', body: formData })
     .then(response => {
-      console.log('Fetch response received, status:', response.status); // Check response status
-      return response.json();
+      console.log('Fetch response received, status:', response.status); // Log status
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text(); // Get raw response first
     })
-    .then(data => {
-      console.log('Server Response:', data); // Debug server response
+    .then(text => {
+      let data;
+      try {
+        data = JSON.parse(text); // Attempt to parse as JSON
+      } catch (e) {
+        console.log('Response is not JSON:', text); // Log if not JSON
+        throw new Error('Invalid JSON response');
+      }
+      console.log('Server Response:', data); // Debug parsed response
       showModal('Success', 'Form submitted successfully!');
       form.reset();
       // Hide/reset all sections
@@ -1401,6 +1411,7 @@ document.getElementById('estateForm').addEventListener('keydown', function (e) {
 </script>
 </body>
 </html>
+
 
 
 
